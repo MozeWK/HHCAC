@@ -2179,7 +2179,8 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 return isSameDay(eventDateTime, day);
             }
             
-            const eventDate = new Date(event.eventDate);
+            // Parse date string as local date, not UTC
+            const eventDate = new Date(event.eventDate + 'T00:00:00');
             if (isSameDay(eventDate, day)) return true;
             
             if (event.recurrence === 'none') return false;
